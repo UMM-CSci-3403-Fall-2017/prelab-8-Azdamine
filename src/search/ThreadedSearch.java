@@ -41,13 +41,23 @@ public class ThreadedSearch<T> implements Runnable {
 	ArrayList<Thread> threadList = new ArrayList<Thread>;
 
 	for (i=0; i<numThreads; i++) {
-		Thread thread = new Thread(searchList.get(i));
+		Thread thread = searchList.get(i);
 		threadList.get(i) = thread;
 	}
 
 	for (i=0; i<numThreads; i++) {
 		threadList.get(i).start();
 	}
+
+	for (i=0; i<numThreads; i++) {
+		try {
+			threadList.get(i).join();
+		} catch (InterruptedException e) {
+			System.out.println("Thread interrupted");
+		}
+	}
+
+
 	  
 	  /*
     * First construct an instance of the `Answer` inner class. This will
