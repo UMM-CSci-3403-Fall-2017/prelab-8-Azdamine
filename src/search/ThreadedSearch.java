@@ -27,7 +27,29 @@ public class ThreadedSearch<T> implements Runnable {
   * You can assume that the list size is divisible by `numThreads`
   */
   public boolean parSearch(int numThreads, T target, ArrayList<T> list) throws InterruptedException {
-    /*
+    
+	Answer answer = new Answer();
+	ArrayList<ThreadedSearch> searchList = new ArrayList<ThreadedSearch>;
+
+	int divisionSize = list.size()/numThreads;
+
+	for (i=0; i<numThreads; i++) {
+		ThreadedSearch search = new ThreadedSearch(target, list,divisionSize*i, divisionSize*i + divisionSize-1, answer);
+		searchList.get(i) = search;
+	}
+
+	ArrayList<Thread> threadList = new ArrayList<Thread>;
+
+	for (i=0; i<numThreads; i++) {
+		Thread thread = new Thread(searchList.get(i));
+		threadList.get(i) = thread;
+	}
+
+	for (i=0; i<numThreads; i++) {
+		threadList.get(i).start();
+	}
+	  
+	  /*
     * First construct an instance of the `Answer` inner class. This will
     * be how the threads you're about to create will "communicate". They
     * will all have access to this one shared instance of `Answer`, where
@@ -51,7 +73,9 @@ public class ThreadedSearch<T> implements Runnable {
   }
 
   public void run() {
+	while(true) {
 
+	}
   }
 
   private class Answer {
